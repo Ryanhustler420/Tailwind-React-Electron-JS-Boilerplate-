@@ -41,6 +41,7 @@ function createSplashWindow() {
     transparent: true,
     resizable: false,
     webPreferences: {
+      // webSecurity: false, // bad way to bypass 'cors' # https://pratikpc.medium.com/bypassing-cors-with-electron-ab7eaf331605
       nodeIntegration: false, // prevent html to access the ipcRenderer, so that they can't missuse these function
       contextIsolation: true, // cant override preload file values via console of browser
       enableRemoteModule: true, // Allow renderer to access Electron Native API which only get access in main thread
@@ -68,6 +69,7 @@ function createWindow() {
     // titleBarStyle: 'customButtonsOnHover',
     backgroundColor: '#fff', // white
     webPreferences: {
+      // webSecurity: false, // bad way to bypass 'cors' # https://pratikpc.medium.com/bypassing-cors-with-electron-ab7eaf331605
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false, // prevent html to access the ipcRenderer, so that they can't missuse these function
       contextIsolation: true, // cant override preload file values via console of browser

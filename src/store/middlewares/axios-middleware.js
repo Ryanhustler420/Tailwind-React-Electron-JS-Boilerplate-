@@ -30,7 +30,7 @@ export default (store) => (next) => (action) => {
         if (!request.url.includes('/login') && !request.url.includes('users/create')) {
             const v = (await store.getState().session.infos).cookie.value;
             if (!_.isUndefined(v)) {
-                request.withCredentials = true;
+                // request.withCredentials = true;
                 request.headers['app-name-cookie'] = (await store.getState().session.infos).cookie.value; // we need the on each req
                 // request.timeoutErrorMessage = 'Connection timout has been trigger'
                 // request.timeout = 60 * 5;
