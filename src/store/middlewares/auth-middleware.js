@@ -13,8 +13,8 @@ export default (store) => (next) => (action) => {
 
     const DataBucket = store.getState();
 
-    switch (action.type) {
-        case TYPES.AUTH_LOGOUT_SUCCESS:
+    switch (action?.type) {
+        case TYPES.RESET_ALL_STATES:
             // unsubscribing if any listeners is present in the app to prevent memory leaks
             break;
         default:

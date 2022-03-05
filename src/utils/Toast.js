@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import _ from 'lodash';
 
 class Toast {
 

@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 const { ipcRenderer, contextBridge, remote } = require('electron');
 const listenersStore = {};
 
-contextBridge.exposeInMainWorld('electron', {
+const inteface = {
   notificationApi: {
     sendNotification(message) {
       ipcRenderer.send('notify', message)
@@ -126,16 +126,8 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.removeListener('metaData::success', listenersStore['metaData::success']);
       }
     },
-    env: {
-      get() {
-        return { isDevelopment: !remote.app.isPackaged }
-      }
-    },
-    app_version: {
-      get() {
-        return remote.app.getVersion()
-      }
-    }
+    is_dev: !remote.app.isPackaged,
+    app_version: remote.app.getVersion(),
   },
   portal: {
     appname_values: {
@@ -295,8 +287,35 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.removeListener('saveUserLikes::success', listenersStore['saveUserLikes::success']);
       }
     },
+    getCachedUser: {
+      send(key) {
+        ipcRenderer.send('getCachedUser::request', key);
+      },
+      openL(cb) {
+        const listener = (_, user) => cb(user);
+        ipcRenderer.on('getCachedUser::success', listenersStore['getCachedUser::success'] = listener);
+      },
+      closeL() {
+        ipcRenderer.removeListener('getCachedUser::success', listenersStore['getCachedUser::success']);
+      }
+    },
+    saveCurrentUser: {
+      send(key, user) {
+        ipcRenderer.send('saveCurrentUser::request', key, user);
+      },
+      openL(cb) {
+        const listener = (_, user) => cb(user);
+        ipcRenderer.on('saveCurrentUser::success', listenersStore['saveCurrentUser::success'] = listener);
+      },
+      closeL() {
+        ipcRenderer.removeListener('saveCurrentUser::success', listenersStore['saveCurrentUser::success']);
+      }
+    },
   },
   betteryApi: {
 
   }
-})
+}
+
+contextBridge.exposeInMainWorld('electron', inteface);
+window.electron = this;

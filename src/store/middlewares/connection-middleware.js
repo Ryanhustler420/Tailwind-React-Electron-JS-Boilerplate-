@@ -13,10 +13,10 @@ export default (store) => (next) => (action) => {
 
     const DataBucket = store.getState();
 
-    switch (action.type) {
+    switch (action?.type) {
         case TYPES.APP_IS_ONLINE:
         case TYPES.APP_IS_OFFLINE: {
-            const { showNotifications } = DataBucket.settings
+            const { showNotifications } = DataBucket.settings.bucket
             if (showNotifications) {
                 Notifications.show({
                     title: 'Connection Status',

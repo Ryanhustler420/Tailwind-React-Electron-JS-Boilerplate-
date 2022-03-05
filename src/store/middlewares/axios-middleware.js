@@ -31,7 +31,7 @@ export default (store) => (next) => (action) => {
             const v = (await store.getState().session.infos).cookie.value;
             if (!_.isUndefined(v)) {
                 request.withCredentials = true;
-                request.headers[process.env.AppNameCookieName] = (await store.getState().session.infos).cookie.value; // we need the on each req
+                request.headers['app-name-cookie'] = (await store.getState().session.infos).cookie.value; // we need the on each req
                 // request.timeoutErrorMessage = 'Connection timout has been trigger'
                 // request.timeout = 60 * 5;
             }

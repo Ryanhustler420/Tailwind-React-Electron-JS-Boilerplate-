@@ -5,10 +5,10 @@
 // return error value, because here state only has null value
 export const createErrorReducer = actionType =>
     (state = null, action) => {
-        switch (action.type) {
+        switch (action?.type) {
             case `${actionType}_INIT`:
                 return null;
-            case `${actionType}_ERROR`:
+            case `${actionType}_FAILED`:
                 return action.error
             default:
                 return state;
@@ -18,10 +18,10 @@ export const createErrorReducer = actionType =>
 // return bool value, because here state only has boolean value
 export const createIsFetchingReducer = actionType =>
     (state = false, action) => {
-        switch (action.type) {
+        switch (action?.type) {
             case `${actionType}_INIT`:
                 return true;
-            case `${actionType}_ERROR`:
+            case `${actionType}_FAILED`:
             case `${actionType}_SUCCESS`:
                 return false;
             default:

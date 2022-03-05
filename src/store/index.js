@@ -5,9 +5,12 @@ import promiseMiddleware from 'redux-promise';
 import _ from 'lodash';
 
 // Reducers
-import authReducer from '../reducers/auth-reducers'
-import settingReducer from '../reducers/settings-reducers'
-import connectionReducer from '../reducers/connection-reducers'
+import usersReducer from '../reducers/users-reducers';
+import sessionReducer from '../reducers/session-reducers';
+import settingReducer from '../reducers/settings-reducers';
+import connectionReducer from '../reducers/connection-reducers';
+import pagesStateReducers from '../reducers/pages-state-reducers';
+import applicationStateReducer from '../reducers/application-state-reducers';
 
 // Middlewares
 import connectionMiddleware from './middlewares/connection-middleware'
@@ -32,9 +35,12 @@ export default function configureStore() {
     ]
 
     const mainReducer = combineReducers({
-        auth: authReducer,
+        user: usersReducer,
+        session: sessionReducer,
         settings: settingReducer,
+        pageState: pagesStateReducers,
         connection: connectionReducer,
+        applicationState: applicationStateReducer,
     });
 
     const filteredReducer = (state, action) => {

@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { hideLoadingBar, hideLoadingSpinner, redirectConsume } from './../actions/application-state-actions';
+import { redirectConsume } from './../actions/application-state-actions';
 
 // This HOC contains all the methods/hooks which are common between pages
 function HOC({ WrappedComponent, ...rest }) {
@@ -36,8 +36,8 @@ function HOC({ WrappedComponent, ...rest }) {
     // Getting called on every page leave
     useEffect(() => {
         return () => {
-            dispatch(hideLoadingBar());
-            dispatch(hideLoadingSpinner());
+            // dispatch(hideLoadingBar());
+            // dispatch(hideLoadingSpinner());
         }
     }, []);
     //************************************************* */

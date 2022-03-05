@@ -1,39 +1,45 @@
-import Storage from './../utils/storage';
-import { TYPES } from '../actions/types';
-
+import BROWSER_STORAGE from '../utils/BrowserStorage';
 import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
+import { TYPES } from '../actions/types';
 
 function createSettingsReducer() {
 
-    // this is state
     const INITIAL_STATE = {
+        imagePadding: { padLeft: 50, padTop: 50, padRight: 50, padBottom: 50 },
         showNotifications: true,
+        darkTheme: false,
         playSound: true,
-        saveable: true, // we can keep this to later decide if we want to clear settings reducer or not
+        saveable: true,
     }
 
-    const settings = createReducer(INITIAL_STATE, {
-        // here state value will be {}
-        [TYPES.SETTINGS_UPDATE]: (state, action) => {
-            const { setting, value } = action;
-            state[setting] = value;
-        },
-        [TYPES.SETTINGS_INITIAL_LOAD]: (state, action) => {
-            const storedSettings = Storage.getItem('app-settings');
-            state = storedSettings
+    const settings = (state = INITIAL_STATE, action) => {
+        const { setting, value } = action;
+        switch (action?.type) {
+            case TYPES.UPDATE_SETTINGS:
+                return { ...state, [setting]: value }
+            case TYPES.UPDATE_SETTINGS_SHOW_NOTIFICATIONS:
+                return { ...state, showNotifications: value };
+            case TYPES.UPDATE_SETTINGS_IMAGE_PADDING:
+                return { ...state, imagePadding: value };
+            case TYPES.UPDATE_SETTINGS_DARK_THEME:
+                return { ...state, darkTheme: value };
+            case TYPES.UPDATE_SETTINGS_PLAY_SOUND:
+                return { ...state, playSound: value };
+            case TYPES.LOAD_INITIAL_SETTINGS_FROM_CACHED:
+                return {
+                    ...state,
+                    showNotifications: BROWSER_STORAGE.getNotifiationStatus() ? BROWSER_STORAGE.getNotifiationStatus() === 'true' : true,
+                    imagePadding: BROWSER_STORAGE.getPaddingSet() ? BROWSER_STORAGE.getPaddingSet() : { padLeft: 50, padTop: 50, padRight: 50, padBottom: 50 },
+                    darkTheme: BROWSER_STORAGE.getDarkThemeStatus() ? BROWSER_STORAGE.getDarkThemeStatus() === 'true' : false,
+                    playSound: BROWSER_STORAGE.getSoundStatus() ? BROWSER_STORAGE.getSoundStatus() === 'true' : true,
+                }
+            default:
+                return state;
         }
-    })
-
-    const others = createReducer({}, {
-        'ACTION_TYPE': (state, action) => {
-            state['id'] = action.id || '#12'
-        }
-    })
+    }
 
     return combineReducers({
-        settings,
-        others
+        bucket: settings
     })
 }
 

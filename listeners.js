@@ -240,5 +240,19 @@ module.exports = function (app) {
         await FileIO.writeJSON(pathToDump, key + '.json', token);
         re.sender.send('saveUserLikes::success', ids);
     });
+    ipcMain.on('getCachedUser::request', async (re, key) => {
+        if (_.isUndefined(key)) return;
+        FileIO.read(pathToDump, key + '.json', async (e, response) => {
+            let final = (_.isUndefined(response) && _.isEmpty(response)) ? JSON.stringify({}) : JSON.stringify(await new DataEncryption().decode(response));
+            final = _.isEmpty(JSON.parse(final)) ? JSON.stringify({}) : final;
+            re.sender.send('getCachedUser::success', refine(final));
+        });
+    });
+    ipcMain.on('saveCurrentUser::request', async (re, key, user = {}) => {
+        if (_.isUndefined(user)) return;
+        const token = await new DataEncryption().encode(user, 'saveCurrentUser');
+        await FileIO.writeJSON(pathToDump, key + '.json', token);
+        re.sender.send('saveCurrentUser::success', user);
+    });
 
 }

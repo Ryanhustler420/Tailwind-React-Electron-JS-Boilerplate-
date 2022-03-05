@@ -1,7 +1,7 @@
 // Used to store light weight data on browser side so that use can decide what to do in some situation, like retrieve from cache or from server
 // this class has a job to R/W from browser storage, but also has some helper util methods to quick to query
 
-const Constants = require('../../Constants');
+const Constants = require('../Constants');
 
 class BROWSER_STORAGE {
 
@@ -50,10 +50,6 @@ class BROWSER_STORAGE {
     static userIsNowLoggedOut() { return this._save(this.#KEYS.LOGGED_IN_USER, false); }
     static isUserLoggedIn() { return this._get(this.#KEYS.LOGGED_IN_USER) == 'true' ? true : false; }
 
-    static saveCurrentTimestampForLastFetch_MyNotification() { return this._saveLastFetchedAt(this.#KEYS.MY_NOTIFICATION_LAST_FETCHED_TIMESTAMP); }
-    static getTimestampForLastFetch_MyNotification() { return this._getLastFetchedAt(this.#KEYS.MY_NOTIFICATION_LAST_FETCHED_TIMESTAMP); }
-    static resetTimestampForLastFetch_MyNotification() { return this._save(this.#KEYS.MY_NOTIFICATION_LAST_FETCHED_TIMESTAMP, Constants.NULL); }
-
     // Call it once and all the data will be set to old state
     static resetAll(user) {
         this.userIsNowLoggedOut();
@@ -68,4 +64,4 @@ class BROWSER_STORAGE {
     static _get(key) { return localStorage.getItem(key); }
 }
 
-module.exports = BROWSER_STORAGE;
+export default BROWSER_STORAGE;
