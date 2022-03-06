@@ -14,7 +14,7 @@ require(path.join(__dirname, 'listeners'))(app);
 // const trayIcon = path.join(__dirname, 'assets', 'images', 'logo-black.png')
 
 let baseUrl = isDev ? `http://localhost:3002` : `https://www.domain.com`;
-let url_render = isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`;
+let url_render = isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "index.html")}`;
 let splashWindow,
   mainWindow,
   tray = null,

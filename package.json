@@ -41,14 +41,26 @@
     "yargs": "^16.2.0"
   },
   "scripts": {
-    "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
-    "electron": "wait-on tcp:3000 && electron-forge start",
+    "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"cross-env ELECTRON_START_URL=http://localhost:3000 npm run electron\"",
+    "electron": "wait-on tcp:3000 && electron .",
+
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "package": "react-scripts build && electron-forge package",
-    "make": "react-scripts build && electron-forge make"
+
+    "clean-win": "rd /S /Q dist && rd /S /Q build",
+    "package:win": "electron-builder build --win -c.extraMetadata.main=build/main.js --publish never",
+
+    "clean-linux": "rm -rf build dist",
+    "package:linux": "electron-builder build --linux -c.extraMetadata.main=build/main.js --publish never",
+
+    "clean-macos": "rm -rf build dist",
+    "package:macos": "electron-builder build --mac -c.extraMetadata.main=build/main.js --publish never",
+
+    "deploy:win": "electron-builder build --win -c.extraMetadata.main=build/main.js --publish always",
+    "deploy:macos": "electron-builder build --mac -c.extraMetadata.main=build/main.js --publish always",
+    "deploy:linux": "electron-builder build --linux -c.extraMetadata.main=build/main.js --publish always"
   },
   "eslintConfig": {
     "extends": [
@@ -69,11 +81,6 @@
     ]
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.52",
-    "@electron-forge/maker-deb": "^6.0.0-beta.52",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.52",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.52",
-    "@electron-forge/maker-zip": "^6.0.0-beta.52",
     "autoprefixer": "^10.4.2",
     "concurrently": "^5.2.0",
     "electron": "^13.1.5",
@@ -89,34 +96,15 @@
     "tailwindcss": "^3.0.23",
     "wait-on": "^5.1.0"
   },
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "icon": "src/icons/mac/icon.icns",
-        "name": "React + Electron App"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "cra_electron_forge_demo"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
+  "build": {
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "publish": {
+      "provider": "github",
+      "repo": "raisehand-image-container",
+      "owner": "Raisehand Software Private Limited"
     }
   }
 }
