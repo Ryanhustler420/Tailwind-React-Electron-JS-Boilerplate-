@@ -11,12 +11,12 @@ import { Toast } from '../utils/Toast';
 // retrieve from browser when recently login
 async function getBrowserCookie(cookie_name) {
     const cookie = new Promise((resolve, reject) => {
-        window.electron.cookies.getCookie.openL(cookie => { // hook listener (1)
+        window.electron?.cookies.getCookie.openL(cookie => { // hook listener (1)
             const single = _.find(cookie, ['name', cookie_name])
-            window.electron.cookies.getCookie.closeL();
+            window.electron?.cookies.getCookie.closeL();
             resolve(single);
         });
-        window.electron.cookies.getCookie.send(cookie_name); // send signal
+        window.electron?.cookies.getCookie.send(cookie_name); // send signal
     });
     return await cookie;
 }
@@ -31,7 +31,7 @@ export const login = (email, password) => async dispatch => {
             dispatch({ type: TYPES.SAVE_USER_DOCUMENT, user: response.data.document })
             dispatch({ type: TYPES.HIDE_LOADING_PANEL })
             getBrowserCookie('app-name-cookie').then((cookie) => {
-                window.electron.cookies.persistCookie.send(cookie);
+                window.electron?.cookies.persistCookie.send(cookie);
                 dispatch({ type: TYPES.HIDE_LOADING_PANEL })
                 dispatch({ type: TYPES.SAVE_COOKIE_DETAILS, cookie })
             }).catch(console.error);
@@ -101,9 +101,9 @@ export const updateUserDetails = (UserUpdateInfo = {}) => dispatch => {
 export const logout = (user) => dispatch => {
     dispatch({ type: TYPES.SHOW_LOADING_PANEL })
     return API.logout().then(response => {
-        window.electron.db.clearAll.send();
+        window.electron?.db.clearAll.send();
         BROWSER_STORAGE.resetAll(user);
-        window.electron.cookies.persistCookie.send("");
+        window.electron?.cookies.persistCookie.send("");
         dispatch({ type: TYPES.RESET_ALL_STATES })
         dispatch({ type: TYPES.HIDE_LOADING_PANEL })
         dispatch({ type: TYPES.UPDATE_COOKIE_DETAILS, cookie: "" })

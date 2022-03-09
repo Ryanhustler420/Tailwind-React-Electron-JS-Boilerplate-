@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { TerminalContextProvider } from "react-terminal";
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TerminalContextProvider>
+      <App />
+    </TerminalContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

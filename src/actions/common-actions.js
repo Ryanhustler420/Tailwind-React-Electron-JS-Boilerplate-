@@ -10,8 +10,8 @@ export const handleStatus = (statusCode) => dispatch => {
             dispatch({ type: TYPES.RESET_ALL_STATES })
             dispatch({ type: TYPES.UPDATE_COOKIE_DETAILS, cookie: "" })
             Toast.bottom_center.stage('error', 'User was logged out');
-            window.electron.cookies.persistCookie.send("");
-            window.electron.db.clearAll.send();
+            window.electron?.cookies.persistCookie.send("");
+            window.electron?.db.clearAll.send();
             // since we are not getting user details from method params, we are retrieveing from cache
             LOCAL.getCachedUser(user => BROWSER_STORAGE.resetAll(user));
             break;

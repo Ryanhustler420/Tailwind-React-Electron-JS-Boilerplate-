@@ -7,6 +7,7 @@
 *::before {
     padding: 0;
     margin: 0;
+    outline: none;
     box-sizing: inherit;
     /* border: 1px dotted black; */
 
@@ -37,4 +38,47 @@ img {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+/* Application Title Bar Dragging */
+.app-drag {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+}
+
+.app-drag-button {
+    -webkit-app-region: no-drag;
+}
+
+/* Contextify React */
+
+.react-contexify,
+.react-contexify__will-enter--scale {
+    border-radius: 0 !important;
+    /* box-shadow: none !important; */
+    background-color: #475569 !important;
+    padding: 0 0 1 0 !important;
+}
+
+.react-contexify__item__content {
+    color: white !important;
+    font-size: 12px;
+}
+
+/* .react-contexify__item__content:hover {
+    background-color: black !important;
+} */
+
+/* to black grandient */
+
+.gradient {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        -180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(23, 23, 23, 0) 0%,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 100%
+    );
 }

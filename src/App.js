@@ -79,7 +79,7 @@ function AuthRoute({ children, ...rest }) {
 
 function sendEnvsToMainProcess() {
   const envs = { 'someValue': 'shouldReceiveOnMainProcessDataStatgeClass' }
-  window.electron.portal.appname_values.send(envs);
+  window.electron?.portal.appname_values.send(envs);
 }
 
 export default function App() {
@@ -91,7 +91,7 @@ export default function App() {
 }
 
 const handleHotKeysListeners = (dispatch) => {
-  window.electron.appApi.hotkey.openL((info) => {
+  window.electron?.appApi.hotkey.openL((info) => {
     // you can handle such cases from here...
     switch (info?.reduxStateKey) {
       case 'sideBarVisible':
@@ -110,7 +110,7 @@ const handleHotKeysListeners = (dispatch) => {
   });
 
   return () => {
-    window.electron.appApi.hotkey.closeL();
+    window.electron?.appApi.hotkey.closeL();
   }
 }
 
@@ -124,9 +124,9 @@ const showRunningEnvValue = () => {
 
 const showRootFiles = () => {
   if (BROWSER_STORAGE.showCwdFilesValue()) {
-    window.electron.appApi.getInstallationDirectory.send();
-    window.electron.appApi.getInstallationDirectory.openL(o => {
-      window.electron.appApi.getInstallationDirectory.closeL();
+    window.electron?.appApi.getInstallationDirectory.send();
+    window.electron?.appApi.getInstallationDirectory.openL(o => {
+      window.electron?.appApi.getInstallationDirectory.closeL();
       console.log(o);
     });
   }

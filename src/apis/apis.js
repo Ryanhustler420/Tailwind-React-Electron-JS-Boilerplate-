@@ -9,7 +9,7 @@ let APP_NAME = 'app_name';
 
 window.electron?.os.systemDetails.send();
 window.electron?.os.systemDetails.openL(sys_info_object => {
-    window.electron.os.systemDetails.closeL();
+    window.electron?.os.systemDetails.closeL();
     deviceUUID = sys_info_object.combine;
 });
 

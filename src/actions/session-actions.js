@@ -12,16 +12,16 @@ export const updateSessionFromCache = () => dispatch => {
 // retrieve from local file
 async function getCachedCookie() {
     const cookie = new Promise((resolve, reject) => {
-        window.electron.cookies.retrieveCookie.openL(cookie => {
+        window.electron?.cookies.retrieveCookie.openL(cookie => {
             if (!_.isUndefined(cookie)) {
                 let cc = cookie;
                 if (typeof (cookie) == 'string') cc = JSON.parse(cookie);
                 if (_.has(cc, 'name') && _.has(cc, 'value')) resolve(cc);
                 else reject(undefined);
             }
-            window.electron.cookies.retrieveCookie.closeL();
+            window.electron?.cookies.retrieveCookie.closeL();
         });
-        window.electron.cookies.retrieveCookie.send();
+        window.electron?.cookies.retrieveCookie.send();
     });
     return await cookie;
 }
