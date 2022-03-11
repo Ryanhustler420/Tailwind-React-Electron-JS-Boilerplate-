@@ -108,3 +108,13 @@ img {
         background-color: rgba(33, 149, 64, 0);
     }
 }
+
+.rct-tree-root {
+    padding: 0 !important;
+}
+.rct-tree-items-container li {
+    background-color: #64748b;
+}
+.rct-tree-item-title-container {
+    border: 0 !important;
+}
