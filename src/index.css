@@ -82,3 +82,29 @@ img {
         rgba(0, 0, 0, 1) 100%
     );
 }
+
+.blink {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: rgb(37, 147, 66);
+    animation-name: dotfade;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes dotfade {
+    0% {
+        background-color: rgba(33, 149, 64, 0);
+    }
+    50% {
+        background-color: #219540;
+    }
+    100% {
+        background-color: rgba(33, 149, 64, 0);
+    }
+}
