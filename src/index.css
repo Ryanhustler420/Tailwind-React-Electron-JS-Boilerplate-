@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 *,
 *::after,
@@ -85,11 +86,9 @@ img {
 
 .blink {
     display: inline-block;
-    position: absolute;
-    top: 50%;
     transform: translateY(-50%);
-    height: 6px;
-    width: 6px;
+    height: 10px;
+    width: 10px;
     border-radius: 50%;
     background-color: rgb(37, 147, 66);
     animation-name: dotfade;
@@ -117,4 +116,48 @@ img {
 }
 .rct-tree-item-title-container {
     border: 0 !important;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.chips_input_container {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.chips_wrapper {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.chips_wrapper .input_container {
+    display: none;
+}
+
+.chips_wrapper .chip {
+    font-size: 8px;
+}
+
+.remove {
+    width: 0 !important;
+}
+.remove svg {
+    display: none;
+}
+
+.image-gallery-bullets-container .image-gallery-bullet {
+    box-shadow: none;
+    border: 1px solid black;
+    border-radius: 10;
+}
+.image-gallery-bullets .image-gallery-bullet.active {
+    border: none;
+    background: black;
+}
+.image-gallery-bullets .image-gallery-bullet.active:hover {
+    border: 1px solid black;
+    background: black;
 }
