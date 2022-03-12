@@ -1,0 +1,7 @@
+.btn {
+    @apply px-4 border rounded-md text-sm;
+}
+
+.btn-primary {
+    @apply bg-white border-blue-500 text-blue-500;
+}

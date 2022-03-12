@@ -1,0 +1,16 @@
+.react-contexify,
+.react-contexify__will-enter--scale {
+    border-radius: 0 !important;
+    /* box-shadow: none !important; */
+    background-color: #475569 !important;
+    padding: 0 0 1 0 !important;
+}
+
+.react-contexify__item__content {
+    color: white !important;
+    font-size: 12px;
+}
+
+/* .react-contexify__item__content:hover {
+    background-color: black !important;
+} */

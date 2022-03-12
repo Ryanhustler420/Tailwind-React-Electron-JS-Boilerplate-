@@ -1,0 +1,25 @@
+.chips_input_container {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.chips_wrapper {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.chips_wrapper .input_container {
+    display: none;
+}
+
+.chips_wrapper .chip {
+    font-size: 8px;
+}
+
+.remove {
+    width: 0 !important;
+}
+.remove svg {
+    display: none;
+}

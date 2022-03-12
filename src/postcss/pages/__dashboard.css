@@ -1,0 +1,49 @@
+.bg {
+    @apply bg-purple-600;
+    /* background: var(--theme-color); */
+    /* background: theme('colors.blue.500'); */
+    @apply text-white;
+    @screen sm {
+        background: theme('colors.black');
+    };
+    /* @media (min-width: theme('screens.sm')) {
+        @apply rounded-lg;
+    } */
+    /* color: var(--theme-color); */
+    /* @apply bg-[url('/what_a_rush.png')] */
+    /* @apply before:content-['hello\_world'] */
+    /* @apply text-[var(--my-var)] */
+    /* @apply text-[length:var(--my-var)] */
+    /* @apply text-[color:var(--my-var)] */
+}
+
+/* @screen sm {
+    .card {
+      @apply rounded-lg;
+    }
+} */
+
+.card {
+    padding: theme('spacing.4');
+}
+
+.h1 {
+    @apply font-light text-3xl;
+    /* color: var(--theme-color); */
+}
+
+.dark_theme {
+    @apply bg-[#000];
+    @apply text-[22px];
+    @apply before:content-['Antivirus'];
+    @apply [mask-type:luminance];
+    @apply [--scroll-offset:56px];
+}
+
+.grid_cols {
+    @apply grid-cols-[1fr_500px_2fr];
+}
+
+.signal {
+    @apply top-[120px] absolute
+}

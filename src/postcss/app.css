@@ -1,0 +1,35 @@
+/* https://www.webdesignerdepot.com/2020/12/2-smartest-ways-to-structure-sass/ */
+@import "./vendors/__tailwind.css";
+
+/* ABSTRACTS */
+@import "./abstracts/__variables.css";
+@import "./abstracts/__utility.css";
+
+/* COMPONENTS */
+@import "./components/__buttons.css";
+@import "./components/__chips.css";
+@import "./components/__cards.css";
+@import "./components/__blinkers.css";
+@import "./components/__rct_tree.css";
+@import "./components/__react_contexify.css";
+@import "./components/__image_gallery.css";
+
+/* CORES */
+@import "./core/__reset.css";
+@import "./core/__typography.css";
+
+/* LAYOUTS */
+@import "./layout/__footer.css";
+@import "./layout/__grid.css";
+@import "./layout/__header.css";
+@import "./layout/__navigation.css";
+@import "./layout/__sidebar.css";
+
+/* PAGES */
+@import "./pages/__about.css";
+@import "./pages/__dashboard.css";
+@import "./pages/__hero.css";
+
+/* SECTIONS */
+@import "./sections/__cta.css";
+@import "./sections/__hero.css";

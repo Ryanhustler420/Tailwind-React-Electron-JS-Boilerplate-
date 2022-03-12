@@ -1,0 +1,37 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-sizing: inherit;
+    /* border: 1px dotted black; */
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+body {
+    box-sizing: border-box;
+    min-height: -webkit-fill-available;
+    /* transition: all 1s; */
+}
+
+a {
+    -webkit-user-drag: none; /* in order to remove the ghost drag */
+}
+
+img {
+    pointer-events: none; /* in order to remove the image ghost drag */
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

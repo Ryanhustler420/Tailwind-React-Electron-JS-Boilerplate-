@@ -1,0 +1,9 @@
+.rct-tree-root {
+    padding: 0 !important;
+}
+.rct-tree-items-container li {
+    background-color: #64748b;
+}
+.rct-tree-item-title-container {
+    border: 0 !important;
+}

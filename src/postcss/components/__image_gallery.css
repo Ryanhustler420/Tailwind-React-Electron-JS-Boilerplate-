@@ -1,0 +1,15 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.image-gallery-bullets-container .image-gallery-bullet {
+    box-shadow: none;
+    border: 1px solid black;
+    border-radius: 10;
+}
+.image-gallery-bullets .image-gallery-bullet.active {
+    border: none;
+    background: black;
+}
+.image-gallery-bullets .image-gallery-bullet.active:hover {
+    border: 1px solid black;
+    background: black;
+}

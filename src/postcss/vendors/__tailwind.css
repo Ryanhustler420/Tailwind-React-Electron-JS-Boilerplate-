@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .card {
+        background-color: theme("colors.white");
+        border-radius: theme("borderRadius.lg");
+        padding: theme("spacing.6");
+        box-shadow: theme("boxShadow.xl");
+    }
+    .select2-dropdown {
+        @apply rounded-b-lg shadow-md !important;
+    }
+    .select2-search {
+        @apply border border-gray-300 rounded;
+    }
+    .select2-results__group {
+        @apply text-lg font-bold text-gray-900;
+    }
+    .content-area {
+        height: calc(100vh - theme("spacing.12"));
+    }
+    .content-area-two {
+        height: calc(100vh - theme("spacing[2.5]"));
+    }
+    .btn-blue {
+        background-color: theme("colors.blue.500");
+    }
+    @media screen(sm) {
+        /* ... */
+    }
+    /* ... */
+}
+
+@layer base {
+    h1 {
+        @apply text-2xl;
+    }
+    h2 {
+        @apply text-xl;
+    }
+    small {
+        @apply text-4xl;
+    }
+    /* ... */
+}
+
+@layer utilities {
+    .content-auto {
+        content-visibility: auto;
+    }
+    /* lg:dark:content-auto can be used like this */
+}
