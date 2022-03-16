@@ -1,7 +1,21 @@
 .btn {
-    @apply px-4 border rounded-md text-sm;
+    @apply px-4 py-2 border cursor-pointer font-semibold;
 }
 
 .btn-primary {
-    @apply bg-white border-blue-500 text-blue-500;
+    @apply bg-white border-black text-black hover:text-white hover:bg-black;
+}
+
+.btn-danger {
+    @apply bg-white border-red-500 text-red-500 hover:text-white hover:bg-red-500;
+}
+
+.btn-group > button:first-child {
+    border-radius: 5px 0 0 5px;
+    border-right: 0px;
+}
+
+.btn-group > button:last-child {
+    border-radius: 0 5px 5px 0;
+    border-left: 1px dotted black;
 }

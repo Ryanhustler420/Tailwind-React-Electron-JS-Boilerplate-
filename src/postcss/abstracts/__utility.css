@@ -8,6 +8,10 @@
     -webkit-app-region: no-drag;
 }
 
+.app-no-drag-container > * {
+    -webkit-app-region: no-drag;
+}
+
 .disabled {
     pointer-events: none;
 }
