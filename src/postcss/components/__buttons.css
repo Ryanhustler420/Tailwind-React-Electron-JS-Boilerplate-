@@ -10,6 +10,10 @@
     @apply bg-white border-red-500 text-red-500 hover:text-white hover:bg-red-500;
 }
 
+.btn-active {
+    @apply bg-green-500 text-white;
+}
+
 .btn-group > button:first-child {
     border-radius: 5px 0 0 5px;
     border-right: 0px;
