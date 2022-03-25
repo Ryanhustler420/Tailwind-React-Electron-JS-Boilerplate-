@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { handleStatus, handleNetworkError } from './common-actions';
 import { redirectTo } from './application-state-actions';
 import { Toast } from '../utils/Toast';
+import { routes } from '../configs/routes';
 
 // retrieve from browser when recently login
 async function getBrowserCookie(cookie_name) {
@@ -68,7 +69,7 @@ export const register = (locationPathname, User = {}) => dispatch => {
     dispatch({ type: TYPES.SHOW_LOADING_PANEL })
     return API.registerNewUser(User).then(response => {
         dispatch({ type: TYPES.HIDE_LOADING_PANEL })
-        dispatch(redirectTo(locationPathname, '/login'));
+        dispatch(redirectTo(locationPathname, routes['/login'].path));
         // dispatch({ type: TYPES.UPDATE_USER_DOCUMENT, user: response.data.document })
     }).catch(reason => {
         dispatch({ type: TYPES.HIDE_LOADING_PANEL })

@@ -1,6 +1,7 @@
 .chips_input_container {
     border: none !important;
     padding: 0 !important;
+    background-color: #000 !important;
 }
 
 .chips_wrapper {
@@ -15,6 +16,8 @@
 
 .chips_wrapper .chip {
     font-size: 8px;
+    background-color: white !important;
+    color: #000 !important;
 }
 
 .remove {

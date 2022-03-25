@@ -5,6 +5,7 @@
 
 import axios from 'axios';
 import _ from 'lodash';
+import { routes } from '../../configs/routes';
 
 /** (param) store:: get state of the application */
 /** (param) next:: helps to proceed further in the funnel to next middleware when get call */
@@ -27,7 +28,7 @@ export default (store) => (next) => (action) => {
     // when request goes from the application to server, it runs first always, so we are hooking header, cookies to the request
     // body
     axios.interceptors.request.use(async request => {
-        if (!request.url.includes('/login') && !request.url.includes('users/create')) {
+        if (!request.url.includes(routes['/login'].path) && !request.url.includes('users/create')) {
             const v = (await store.getState().session.infos).cookie.value;
             if (!_.isUndefined(v)) {
                 // request.withCredentials = true;

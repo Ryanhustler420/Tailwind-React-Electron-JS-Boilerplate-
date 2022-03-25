@@ -144,7 +144,6 @@ app.whenReady().then(async () => {
       globalShortcut.register('CmdOrCtrl+Shift+S', () => mainWindow.webContents.send('hotkey::success', { reduxStateKey: 'sideBarVisible', description: 'Sidebar Visibility Toggled' }));
       globalShortcut.register('CmdOrCtrl+Shift+H', () => mainWindow.webContents.send('hotkey::success', { reduxStateKey: 'headerVisible', description: 'Header Visibility Toggled' }));
       globalShortcut.register('CmdOrCtrl+Shift+F', () => mainWindow.webContents.send('hotkey::success', { reduxStateKey: 'footerVisible', description: 'Footer Visibility Toggled' }));
-      // globalShortcut.register('CmdOrCtrl+Shift+A', () => mainWindow.webContents.send('pageRequest::success', { to: '/create_new_ad_poll' }));
       globalShortcut.register('CmdOrCtrl+Shift+C', () => mainWindow.webContents.send('pageRequest::success', { to: '/register' }));
       globalShortcut.register('CmdOrCtrl+Shift+Backspace', () => mainWindow.webContents.send('goBack::success'));
     });

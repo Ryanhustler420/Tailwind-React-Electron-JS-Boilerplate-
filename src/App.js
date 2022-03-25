@@ -21,6 +21,7 @@ import { Toast } from './utils/Toast';
 
 import * as Constants from './Constants';
 import BROWSER_STORAGE from './utils/BrowserStorage';
+import { routes } from './configs/routes';
 
 function Application() {
 
@@ -46,19 +47,19 @@ function Application() {
     <Router>
       <ContainerWrapper>
         <Switch>
-          <Route path="/login" exact>
+          <Route path={routes['/login'].path} exact>
             <Login />
           </Route>
-          <Route path="/register" exact>
+          <Route path={routes['/register'].path} exact>
             <Register />
           </Route>
-          <AuthRoute path="/settings">
+          <AuthRoute path={routes['/settings'].path}>
             <Settings />
           </AuthRoute>
-          <AuthRoute path="/" exact>
+          <AuthRoute path={routes['/'].path} exact>
             <Home />
           </AuthRoute>
-          {/* <Redirect from='/*' to='/' /> */}
+          <Redirect from='/*' to={routes['/'].path} />
         </Switch>
       </ ContainerWrapper>
     </Router>
@@ -73,7 +74,7 @@ function AuthRoute({ children, ...rest }) {
     {...rest} // Providing the props as it is to children
     render={props =>
       session.cookie ? React.cloneElement(onlyChild, { ...rest, ...props, }) :
-        <Redirect to="/login" />} />
+        <Redirect to={routes['/login'].path} />} />
   )
 }
 

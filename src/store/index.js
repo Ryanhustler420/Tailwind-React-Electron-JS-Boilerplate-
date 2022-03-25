@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 // Reducers
 import usersReducer from '../reducers/users-reducers';
+import themeReducer from '../reducers/theme-reducers';
 import sessionReducer from '../reducers/session-reducers';
 import settingReducer from '../reducers/settings-reducers';
 import connectionReducer from '../reducers/connection-reducers';
@@ -36,6 +37,7 @@ export default function configureStore() {
 
     const mainReducer = combineReducers({
         user: usersReducer,
+        theme: themeReducer,
         session: sessionReducer,
         settings: settingReducer,
         pageState: pagesStateReducers,

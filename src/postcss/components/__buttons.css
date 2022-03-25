@@ -10,6 +10,10 @@
     @apply bg-white border-red-500 text-red-500 hover:text-white hover:bg-red-500;
 }
 
+.btn-danger-outline {
+    @apply bg-transparent border-red-500 text-red-500 hover:text-white hover:bg-red-500;
+}
+
 .btn-active {
     @apply bg-green-500 text-white;
 }

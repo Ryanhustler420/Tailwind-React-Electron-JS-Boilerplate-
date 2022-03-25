@@ -2,6 +2,7 @@ import React, { Component, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { redirectConsume } from './../actions/application-state-actions';
+import { routes } from '../configs/routes';
 
 // This HOC contains all the methods/hooks which are common between pages
 function HOC({ WrappedComponent, ...rest }) {
@@ -17,11 +18,11 @@ function HOC({ WrappedComponent, ...rest }) {
 
     //************************************************* */
     //************************************************* */
-    const PAGES_NOT_ALLOWED_TO_VISIT_ONCED_LOGGED_IN = ['/login', '/register']
+    const PAGES_NOT_ALLOWED_TO_VISIT_ONCED_LOGGED_IN = [routes['/login'].path, routes['/register'].path]
     const notAllowToVisit = PAGES_NOT_ALLOWED_TO_VISIT_ONCED_LOGGED_IN.includes(location.pathname);
     useEffect(() => {
         // if session present it will redirect use to dashboard
-        if (session.cookie && notAllowToVisit) { history.push('/'); }
+        if (session.cookie && notAllowToVisit) { history.push(routes['/'].path); }
     }, [session])
     //************************************************* */
     //************************************************* */
