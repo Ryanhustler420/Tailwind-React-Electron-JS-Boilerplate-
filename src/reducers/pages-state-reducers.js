@@ -10,7 +10,7 @@ function createPagesStateReducer() {
         hasCachedRepoIdRetrievedOnce: false,
     }
 
-    const dashboardPage = createReducer(DASHBOARD_PAGE_STATE, {
+    const dashboardPageState = createReducer(DASHBOARD_PAGE_STATE, {
         [TYPES.SET_DASHBOARD_PAGE_HAS_RENDERED]: (state, action) => {
             state['hasRenderedOnce'] = true;
         },
@@ -22,7 +22,17 @@ function createPagesStateReducer() {
         }
     });
 
-    return combineReducers({ dashboardPage });
+    const LOGIN_PAGE_STATE = {
+        hasRenderedOnce: false,
+    };
+    const loginPageState = createReducer(LOGIN_PAGE_STATE, {});
+
+    const REGISTER_PAGE_STATE = {
+        hasRenderedOnce: false,
+    };
+    const registerPageState = createReducer(REGISTER_PAGE_STATE, {});
+
+    return combineReducers({ dashboardPageState, loginPageState, registerPageState });
 
 }
 

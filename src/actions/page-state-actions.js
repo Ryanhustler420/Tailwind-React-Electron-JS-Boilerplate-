@@ -7,3 +7,7 @@ export const setDashboardPageHasRendered = () => dispatch => {
 export const setDashboardIsAllowedToRerendered = () => dispatch => {
     dispatch({ type: TYPES.SET_DASHBOARD_HAS_ALLOWED_TO_RERENDERED })
 }
+
+export const setHasCachedRepoIdRetrievedOnce = () => dispatch => {
+    dispatch({ type: TYPES.SET_HAS_CACHED_REPO_ID_RETRIEVED_ONCE })
+}

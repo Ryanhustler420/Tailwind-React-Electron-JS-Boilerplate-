@@ -33,6 +33,7 @@ const routes = {
     },
 }
 
+const allowToGoBackRoutes = (pathname) => !_.includes([routes['/'].path, routes['/settings'].path, routes['/mystocks'].path, routes['/library'].path, routes['/login'].path], pathname);
 const getAnyRandomFallbackRoute = (currentRoute) => {
     const available = Object.values(routes).filter(e => e.fallback === true && e.path !== currentRoute);
     const goto = available[Math.floor(Math.random() * available.length)].path;
@@ -41,5 +42,6 @@ const getAnyRandomFallbackRoute = (currentRoute) => {
 
 module.exports = {
     routes,
+    allowToGoBackRoutes,
     getAnyRandomFallbackRoute
 }

@@ -11,6 +11,8 @@ import sessionReducer from '../reducers/session-reducers';
 import settingReducer from '../reducers/settings-reducers';
 import connectionReducer from '../reducers/connection-reducers';
 import pagesStateReducers from '../reducers/pages-state-reducers';
+import pagesFetchStateReducers from '../reducers/pages-fetch-state-reducers';
+import pagesErrorStateReducers from '../reducers/pages-error-state-reducers';
 import applicationStateReducer from '../reducers/application-state-reducers';
 
 // Middlewares
@@ -42,6 +44,8 @@ export default function configureStore() {
         settings: settingReducer,
         pageState: pagesStateReducers,
         connection: connectionReducer,
+        pageFetchState: pagesFetchStateReducers,
+        pageErrorState: pagesErrorStateReducers,
         applicationState: applicationStateReducer,
     });
 

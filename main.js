@@ -6,6 +6,7 @@ const mkdir = require('mkdirp');
 const FileIO = require('./FileIO');
 const isDev = require("electron-is-dev");
 const { autoUpdater } = require('electron-updater');
+const { windowStateKeeper } = require('./electron-helpers');
 const { app, BrowserWindow, Tray, Menu, globalShortcut, dialog, crashReporter } = require('electron');
 
 require('dotenv').config();
@@ -56,12 +57,15 @@ function createSplashWindow() {
 }
 
 function createWindow() {
+  const mainWindowStateKeeper = windowStateKeeper('main');
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    minWidth: 1200,
-    minHeight: 800,
+    x: mainWindowStateKeeper.x,
+    y: mainWindowStateKeeper.y,
+    width: mainWindowStateKeeper.width,
+    height: mainWindowStateKeeper.height,
+    minWidth: 1000,
+    minHeight: 600,
     show: false,
     frame: true,
     resizable: true,
@@ -81,6 +85,7 @@ function createWindow() {
 
   if (isDev) openDevToolsForMainWindow();
   mainWindow.on('closed', () => { mainWindow = null });
+  mainWindowStateKeeper.track(mainWindow);
   mainWindow.loadURL(url_render);
   return mainWindow;
 }

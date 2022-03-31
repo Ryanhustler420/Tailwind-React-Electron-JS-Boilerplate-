@@ -30,6 +30,15 @@ const inteface = {
     quitApp() {
       ipcRenderer.send('app-quit')
     },
+    resizeApp() {
+      remote.getCurrentWindow().setSize(200, 400, true);
+    },
+    minimizeApp() {
+      remote.getCurrentWindow().minimize();
+    },
+    reloadApp() {
+      remote.getCurrentWindow().reload();
+    },
     confirmBox: {
       send(title, message, buttons = ['Yes', 'No']) {
         ipcRenderer.send('confirmBox::request', title, message, buttons);
