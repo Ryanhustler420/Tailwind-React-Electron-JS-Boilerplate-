@@ -48,7 +48,7 @@ class BROWSER_STORAGE {
 
     static userIsNowLoggedIn() { return this._save(this.#KEYS.LOGGED_IN_USER, true); }
     static userIsNowLoggedOut() { return this._save(this.#KEYS.LOGGED_IN_USER, false); }
-    static isUserLoggedIn() { return this._get(this.#KEYS.LOGGED_IN_USER) == 'true' ? true : false; }
+    static isUserLoggedIn() { return this._get(this.#KEYS.LOGGED_IN_USER) === 'true' ? true : false; }
 
     // Call it once and all the data will be set to old state
     static resetAll(user) {

@@ -1,4 +1,5 @@
 const { ipcMain, Notification, session, dialog } = require('electron');
+const { spawn } = require('child_process');
 const path = require('path');
 const execSync = require('child_process').execSync;
 const FileIO = require(path.join(__dirname, 'FileIO'));
@@ -100,6 +101,49 @@ module.exports = function (app) {
     });
 
     // Operating System
+    ipcMain.on('getAndroidDebugBridge::request', async (re, _) => {
+        let devices = [];
+        let tree = {};
+        let cursor = 0;
+
+        const child = spawn('adb', ['devices'], { shell: true });
+        child.stdout.on('data', (data) => {
+            tree[cursor] = []
+            for (const key in data) {
+                if (Object.hasOwnProperty.call(data, key)) {
+                    if (data[key] == 32 || data[key] == 10) { // line change
+                        tree[cursor] = tree[cursor].join('').trim();
+                        tree[++cursor] = [];
+                    } else {
+                        if (data[key] == 9 || data[key] == 13) {
+                            tree[cursor].push(' ');
+                        } else {
+                            const val = String.fromCharCode(data[key]);
+                            tree[cursor].push(val);
+                        }
+                    }
+                }
+            }
+            tree[cursor] = tree[cursor].join('').trim();
+            devices.push(...Object.values(tree).filter(e => {
+                if (e.includes(' ')) return e;
+            }));
+            re.sender.send('getAndroidDebugBridge::success', { error: null, response: devices });
+        });
+
+        child.stderr.on('data', (data) => {
+            // console.error(`child stderr:\n${data}`);
+            re.sender.send('getAndroidDebugBridge::success', { error: data, response: null });
+        });
+
+        child.on('exit', function (code, signal) {
+            // console.log('child process exited with ' + `code ${code} and signal ${signal}`);
+        });
+
+        child.on('close', (code) => {
+            //console.log(`child process exited with code ${code}`);
+        });
+    });
     ipcMain.on('systemDetails::request', async (re, _) => {
         const details = {
             arch: os.arch(),

@@ -1,4 +1,4 @@
-export default {
+const o = {
     setup() {
         if (!('Notification' in window)) {
             console.error('This browser window doesn\'t support notification!');
@@ -12,7 +12,8 @@ export default {
             })
         }
     },
-    show({title, body}) {
-        new Notification(title, {body})
+    show({ title, body }) {
+        new Notification(title, { body })
     }
 }
+export default o;

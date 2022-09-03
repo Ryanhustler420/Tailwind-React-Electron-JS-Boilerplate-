@@ -26,7 +26,7 @@ class Toast {
         static stage(type = this.#types.success, message = 'A damn simple message', onOpenCB = this.onOpenCB, onCloseCB = this.onCloseCB) {
             const has = _.find(this.#queue, { message })
             if (!has) this.#queue.push({ type, message, onOpenCB, onCloseCB });
-            if (this.#isRunning == false) {
+            if (this.#isRunning === false) {
                 this.#isRunning = true;
                 this.showNext();
             }
@@ -34,11 +34,11 @@ class Toast {
 
         static showNext() {
             const o = this.requestQueue().next().value;
-            if (o != undefined) {
+            if (o !== undefined) {
 
-                if (o?.type == this.#types['error']) this._error(o?.message, o.onOpenCB, () => { this.showNext(); o.onCloseCB(); });
-                else if (o?.type == this.#types['dark']) this._dark(o?.message, o.onOpenCB, () => { this.showNext(); o.onCloseCB(); });
-                else if (o?.type == this.#types['success']) this._success(o?.message, o.onOpenCB, () => { this.showNext(); o.onCloseCB(); });
+                if (o?.type === this.#types['error']) this._error(o?.message, o.onOpenCB, () => { this.showNext(); o.onCloseCB(); });
+                else if (o?.type === this.#types['dark']) this._dark(o?.message, o.onOpenCB, () => { this.showNext(); o.onCloseCB(); });
+                else if (o?.type === this.#types['success']) this._success(o?.message, o.onOpenCB, () => { this.showNext(); o.onCloseCB(); });
                 else this.#isRunning = false;
 
             } else this.#isRunning = false;

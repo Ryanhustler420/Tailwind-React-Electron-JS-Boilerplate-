@@ -3,15 +3,14 @@
  * NOTE: Do not mess with data which are going to receive by any reducer, BAD PRACTICE
  */
 
-import _ from 'lodash';
 import { TYPES } from '../../actions/types';
 
 /** (param) store:: get state of the application */
 /** (param) next:: helps to proceed further in the funnel to next middleware when get call */
 /** (param) action:: which we are dispatching  */
-export default (store) => (next) => (action) => {
+const o = (store) => (next) => (action) => {
 
-    const DataBucket = store.getState();
+    // const DataBucket = store.getState();
 
     switch (action?.type) {
         case TYPES.RESET_ALL_STATES:
@@ -21,4 +20,5 @@ export default (store) => (next) => (action) => {
             break
     }
     next(action) // goes to next middleware, if has any!
-}
+};
+export default o;

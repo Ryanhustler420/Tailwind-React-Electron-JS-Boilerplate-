@@ -49,8 +49,8 @@
     "yargs": "^16.2.0"
   },
   "scripts": {
-    "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"cross-env ELECTRON_START_URL=http://localhost:3000 npm run electron\"",
-    "electron": "wait-on tcp:3000 && electron .",
+    "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"cross-env ELECTRON_START_URL=http://localhost:3000 npm run electron\" --unhandled-rejections=strict",
+    "electron": "wait-on tcp:3000 && electron . --unhandled-rejections=strict",
 
     "start": "react-scripts start",
     "build": "react-scripts build",

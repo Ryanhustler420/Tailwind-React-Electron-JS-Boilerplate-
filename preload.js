@@ -153,6 +153,18 @@ const inteface = {
     }
   },
   os: {
+    getAndroidDebugBridge: {
+      send() {
+        ipcRenderer.send('getAndroidDebugBridge::request', 'something');
+      },
+      openL(cb) {
+        const listener = (_, devices) => cb(devices);
+        ipcRenderer.on('getAndroidDebugBridge::success', listenersStore['getAndroidDebugBridge::success'] = listener);
+      },
+      closeL() {
+        ipcRenderer.removeListener('getAndroidDebugBridge::success', listenersStore['getAndroidDebugBridge::success']);
+      }
+    },
     systemDetails: {
       send() {
         ipcRenderer.send('systemDetails::request', 'something');

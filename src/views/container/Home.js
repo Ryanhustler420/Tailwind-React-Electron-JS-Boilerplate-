@@ -1,6 +1,5 @@
 import React from 'react';
 import CommonMethodsHOC from './../../hocs/CommonMethodsHOC';
-import _ from 'lodash';
 
 function Home() {
     return (

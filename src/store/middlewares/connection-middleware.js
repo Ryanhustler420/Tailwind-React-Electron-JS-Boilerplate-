@@ -9,7 +9,7 @@ import Notifications from "../../utils/Notifications";
 /** (param) store:: get state of the application */
 /** (param) next:: helps to proceed further in the funnel to next middleware when get call */
 /** (param) action:: which we are dispatching  */
-export default (store) => (next) => (action) => {
+const o = (store) => (next) => (action) => {
 
     const DataBucket = store.getState();
 
@@ -23,7 +23,11 @@ export default (store) => (next) => (action) => {
                     body: action.isOnline ? 'Online' : 'Offline'
                 });
             }
+            break;
         }
+        default:
+            break;
     }
     next(action) // goes to next middleware, if has any!
 }
+export default o;

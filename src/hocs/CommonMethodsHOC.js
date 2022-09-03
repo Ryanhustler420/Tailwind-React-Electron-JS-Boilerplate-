@@ -27,7 +27,7 @@ function HOC({ WrappedComponent, ...rest }) {
     //************************************************* */
     //************************************************* */
     useEffect(() => {
-        if (redirection[location.pathname] && redirection[location.pathname]?.consume == false) {
+        if (redirection[location.pathname] && redirection[location.pathname]?.consume === false) {
             dispatch(redirectConsume(location.pathname));
             history.replace(redirection[location.pathname].to);
         }

@@ -10,16 +10,17 @@ import { routes } from '../../configs/routes';
 /** (param) store:: get state of the application */
 /** (param) next:: helps to proceed further in the funnel to next middleware when get call */
 /** (param) action:: which we are dispatching  */
-export default (store) => (next) => (action) => {
+const o = (store) => (next) => (action) => {
 
     axios.interceptors.response.use(function (response) {
         if (_.isUndefined(response)) return;
         const logMessage = `method=${response.config.method}mappedServiceUrl=${response.config.url}responseStatusCode=${response.status}`;
         // npm i logger
+        console.log(logMessage);
         // logger.info(logMessage)
         return response;
     }, function axiosRetryInterceptor(err) {
-        if (err.response?.status == 401) {
+        if (err.response?.status === 401) {
             // TODO: logout user, clear session, redirect user to different screen
         } // else if ... more cases...
         return Promise.reject(err)
@@ -48,3 +49,4 @@ export default (store) => (next) => (action) => {
 
     next(action) // goes to next middleware, if has any!
 }
+export default o;
