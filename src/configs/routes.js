@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const routes = {
     "/login": {
         path: "/login",
